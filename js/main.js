@@ -54,12 +54,12 @@ function data2table(datas, time, first='TRA', second='THSR'){
 
         table+=`<tr class="${classes}">
             <td>${data[first].train_number}</td>
-            <td>${data[first].start_time}-${data[first].start_station}</td>
-            <td>${data[first].end_time}-${data[first].end_station}</td>
+            <td>${data[first].start_time} ${data[first].start_station}</td>
+            <td>${data[first].end_time} ${data[first].end_station}</td>
             <td>${data[first].spend_time} 分鐘</td>
             <td>${data[second].train_number}</td>
-            <td>${data[second].start_time}-${data[second].start_station}</td>
-            <td>${data[second].end_time}-${data[second].end_station}</td>
+            <td>${data[second].start_time} ${data[second].start_station}</td>
+            <td>${data[second].end_time} ${data[second].end_station}</td>
             <td>${data[second].spend_time} 分鐘</td>
             <td>${data.total_spend_time} 分鐘</td>
         </td>`;
@@ -125,4 +125,5 @@ setInterval(() => {
         SHOW_DATA_TIMER=0;
     }
     SHOW_DATA_TIMER++;
+
 }, 1000);
