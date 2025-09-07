@@ -1,0 +1,114 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height:100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-div {
+    height:100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.timer-div {
+    height:15%;
+    width:100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#timer {
+    font-family: "Arial", sans-serif;
+    font-size: 7vw;
+}
+
+.table-div {
+    height:85%;
+    max-height: 100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex: 1;
+}
+
+.in-table-div {
+    height:50%;
+    width:100%;
+    padding:5px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.in-table-div::-webkit-scrollbar {
+  display: none;
+}
+
+.in-table-div table {
+    border: 2px solid #000000;
+}
+
+.in-table-div td {
+    text-align: center;
+    outline: 2px solid #000000;
+}
+
+.in-table-div th {
+    text-align: center;
+    outline: 2px solid #000000;
+}
+
+.in-table-div thead {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+}
+
+.in-in-table {
+    width:100%;
+    table-layout: fixed
+}
+
+.TRA-td {
+    background-color: #00BCF2;
+}
+
+.THSR-td {
+    background-color: #FF6500;
+}
+
+.tr-error {
+    color: #000000;
+    background-color: #ff4242;
+}
+
+.tr-disabled {
+    color: #707070;
+    background-color: #a0a0a0;
+}
+
+.tr-extreme {
+    color: #424242;
+    background-color: #ff9090;
+}
+
+.tr-accep {
+    color: #424242;
+    background-color: #ffff90;
+}
+
+.tr-ample {
+    color: #424242;
+    background-color: #90ff90;
+}
