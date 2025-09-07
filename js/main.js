@@ -37,18 +37,18 @@ function data2table(datas, time, first='TRA', second='THSR'){
     datas.forEach((data)=>{
         let classes='', scorll2element;
         const CON_TYE = `${first}2${second}`;
-        if(parse_time(data[first].start_time)<time) classes+='tr-disabled';
+        if(parse_time(data[first].start_time)<=time) classes+='tr-disabled';
         else if(
-            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(data[first].start_time)<time+TIME_CONFIG[CON_TYE].depart_early)||
-            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(datas[datas.length-1][first].start_time)<time+TIME_CONFIG[CON_TYE].depart_early)||
+            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(data[first].start_time)<=time+TIME_CONFIG[CON_TYE].depart_early)||
+            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(datas[datas.length-1][first].start_time)<=time+TIME_CONFIG[CON_TYE].depart_early)||
             (TIME_CONFIG[CON_TYE].last_arrival_time>=0&&TIME_CONFIG[CON_TYE].arrive_early>=0&&
-                parse_time(data[second].end_time)>TIME_CONFIG[CON_TYE].last_arrival_time-TIME_CONFIG[CON_TYE].arrive_early)
+                parse_time(data[second].end_time)>=TIME_CONFIG[CON_TYE].last_arrival_time-TIME_CONFIG[CON_TYE].arrive_early)
         ) classes+='tr-extreme';
         else if(
-            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(data[first].start_time)-TIME_CONFIG.STEP<time+TIME_CONFIG[CON_TYE].depart_early)||
-            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(datas[datas.length-1][first].start_time)-TIME_CONFIG.STEP<time+TIME_CONFIG[CON_TYE].depart_early)||
+            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(data[first].start_time)-TIME_CONFIG.STEP<=time+TIME_CONFIG[CON_TYE].depart_early)||
+            (TIME_CONFIG[CON_TYE].depart_early>=0&&parse_time(datas[datas.length-1][first].start_time)-TIME_CONFIG.STEP<=time+TIME_CONFIG[CON_TYE].depart_early)||
             (TIME_CONFIG[CON_TYE].last_arrival_time>=0&&TIME_CONFIG[CON_TYE].arrive_early>=0&&
-                parse_time(data[second].end_time)+TIME_CONFIG.STEP>TIME_CONFIG[CON_TYE].last_arrival_time-TIME_CONFIG[CON_TYE].arrive_early)
+                parse_time(data[second].end_time)+TIME_CONFIG.STEP>=TIME_CONFIG[CON_TYE].last_arrival_time-TIME_CONFIG[CON_TYE].arrive_early)
         ) classes+='tr-accep scroll-to';
         else  classes+='tr-ample scroll-to';
 
@@ -112,18 +112,9 @@ timer.innerHTML = (`${new Date().getFullYear().toString().padStart(4, '0')}/${(n
 
 setInterval(() => {
     timer.innerHTML = (`${new Date().getFullYear().toString().padStart(4, '0')}/${(new Date().getMonth()+1).toString().padStart(2, '0')}/${new Date().getDate().toString().padStart(2, '0')}`+' - '+new Date().toString().slice(16, 24));
-    
-    if(GET_DATA_TIMER>360){
-        get_data();
-        GET_DATA_TIMER=0;
-        SHOW_DATA_TIMER=0;
-    }
-    GET_DATA_TIMER++;
 
-    if(SHOW_DATA_TIMER>60){
-        show_data()
-        SHOW_DATA_TIMER=0;
-    }
-    SHOW_DATA_TIMER++;
-
+    const sec = new Date().getSeconds(), min = new Date().getMinutes();
+    if(min%30===0) get_data();
+    else if(sec===0) show_data();
 }, 1000);
+
